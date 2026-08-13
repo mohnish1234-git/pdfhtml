@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document Analysis — {{ job_id[:8] }}</title>
+  <!-- Chart.js + Plugins -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ──── Design Tokens ──── */
+    :root {
+      --bg:          #0d0f1a;
+      --surface:     #161927;
+      --surface2:    #1e2236;
+      --border:      rgba(255,255,255,0.07);
+      --accent1:     #667eea;
+      --accent2:     #764ba2;
+      --accent3:     #43e97b;
+      --accent4:     #f8b500;
+      --accent5:     #f64f59;
+      --text:        #e8ecf5;
+      --muted:       #8892a4;
+      --radius:      14px;
+      --shadow:      0 8px 32px rgba(0,0,0,0.45);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ──── Top Bar ──── */
+    .topbar {
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      padding: 18px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(102,126,234,0.35);
+    }
+    .topbar h1 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+    .topbar span { font-size: 0.8rem; opacity: 0.8; font-family: monospace; }
+
+    /* ──── Loading Overlay ──── */
+    #loading {
+      position: fixed; inset: 0;
+      background: var(--bg);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+    .spinner {
+      width: 52px; height: 52px;
+      border: 4px solid var(--surface2);
+      border-top-color: var(--accent1);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    #loading p { color: var(--muted); font-size: 0.95rem; }
+
+    /* ──── Summary Cards ──── */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+      padding: 28px 32px 0;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 18px;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: default;
+    }
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+    .stat-card .val {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent1), var(--accent3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .stat-card .lbl { font-size: 0.75rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.8px; }
+
+    /* ──── Section Header ──── */
+    .section-title {
+      padding: 36px 32px 8px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent1);
+      letter-spacing: 0.4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 20px;
+      background: linear-gradient(to bottom, var(--accent1), var(--accent2));
+      border-radius: 2px;
+    }
+
+    /* ──── Chart Grid ──── */
+    .chart-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 20px;
+      padding: 0 32px 8px;
+    }
+    .chart-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 22px 18px;
+      box-shadow: var(--shadow);
+      transition: box-shadow 0.2s, transform 0.2s;
+      position: relative;
+    }
+    .chart-card:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.6); }
+    .chart-card h3 {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+    .chart-card canvas { width: 100% !important; }
+
+    /* ──── Hypothesis Badges ──── */
+    .hypo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+      padding: 0 32px;
+    }
+    .hypo-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+    .hypo-card h4 { font-size: 0.85rem; color: var(--accent1); margin-bottom: 10px; font-weight: 700; }
+    .hypo-card .stat-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+    .badge {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    .badge-green  { background: rgba(67,233,123,0.15); color: var(--accent3); border: 1px solid rgba(67,233,123,0.3); }
+    .badge-red    { background: rgba(246,79,89,0.15);  color: var(--accent5); border: 1px solid rgba(246,79,89,0.3); }
+    .badge-yellow { background: rgba(248,181,0,0.15);  color: var(--accent4); border: 1px solid rgba(248,181,0,0.3); }
+    .badge-blue   { background: rgba(102,126,234,0.15);color: var(--accent1); border: 1px solid rgba(102,126,234,0.3); }
+    .hypo-card p  { font-size: 0.8rem; color: var(--muted); margin-top: 8px; line-height: 1.5; }
+
+    /* ──── Model Score Bar ──── */
+    .model-meta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding: 0 32px 8px;
+    }
+    .model-chip {
+      padding: 10px 18px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.85rem;
+    }
+    .model-chip strong { color: var(--accent3); font-size: 1.1rem; }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    /* ──── Error state ──── */
+    #error-box {
+      display: none;
+      margin: 40px 32px;
+      background: rgba(246,79,89,0.12);
+      border: 1px solid rgba(246,79,89,0.35);
+      border-radius: var(--radius);
+      padding: 24px;
+      color: var(--accent5);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Loading -->
+<div id="loading">
+  <div class="spinner"></div>
+  <p>Generating analytics — please wait…</p>
+</div>
+
+<!-- Error -->
+<div id="error-box"></div>
+
+<!-- Top bar -->
+<header class="topbar">
+  <h1>📊 Document Analysis Dashboard</h1>
+  <span>Job&nbsp;{{ job_id[:8] }}…</span>
+</header>
+
+<!-- Summary cards -->
+<div class="summary-grid" id="summary-grid" style="display:none"></div>
+
+<!-- 1. Density -->
+<div class="section-title" id="sec-density" style="display:none">1 · Document Density &amp; Efficiency</div>
+<div class="chart-grid" id="density-charts" style="display:none">
+  <div class="chart-card"><h3>Words per Page</h3><canvas id="wordsBarChart"></canvas></div>
+  <div class="chart-card"><h3>Pages vs Words (scatter)</h3><canvas id="pagesScatterChart"></canvas></div>
+</div>
+
+<!-- 2. Composition -->
+<div class="section-title" id="sec-comp" style="display:none">2 · Content Composition</div>
+<div class="chart-grid" id="comp-charts" style="display:none">
+  <div class="chart-card"><h3>Element Breakdown (Pie)</h3><canvas id="compPieChart"></canvas></div>
+  <div class="chart-card"><h3>Elements per Page (Stacked)</h3><canvas id="compStackedChart"></canvas></div>
+</div>
+
+<!-- 3. Flow -->
+<div class="section-title" id="sec-flow" style="display:none">3 · Page-wise Flow Analysis</div>
+<div class="chart-grid" id="flow-charts" style="display:none">
+  <div class="chart-card"><h3>Words per Page (Line)</h3><canvas id="flowWordsLine"></canvas></div>
+  <div class="chart-card"><h3>Elements per Page (Multi-line)</h3><canvas id="flowElemsLine"></canvas></div>
+</div>
+
+<!-- 4. Consistency -->
+<div class="section-title" id="sec-cons" style="display:none">4 · Structure Consistency</div>
+<div class="chart-grid" id="cons-charts" style="display:none">
+  <div class="chart-card"><h3>Paragraph Length Distribution (Box)</h3><canvas id="consBoxChart"></canvas></div>
+  <div class="chart-card"><h3>Consistency Score</h3><canvas id="consScoreChart"></canvas></div>
+</div>
+
+<!-- 5. Quality -->
+<div class="section-title" id="sec-qual" style="display:none">5 · Conversion Quality Analysis</div>
+<div class="chart-grid" id="qual-charts" style="display:none">
+  <div class="chart-card"><h3>Quality Score per Page</h3><canvas id="qualBarChart"></canvas></div>
+  <div class="chart-card"><h3>Score Distribution (%)</h3><canvas id="qualDistChart"></canvas></div>
+</div>
+
+<!-- 6. Hypothesis -->
+<div class="section-title" id="sec-hyp" style="display:none">6 · Hypothesis Testing (Statistical Analysis)</div>
+<div class="hypo-grid" id="hypo-cards" style="display:none"></div>
+<div class="chart-grid" id="hyp-charts" style="display:none">
+  <div class="chart-card"><h3>H1 · Complexity vs Conversion Score</h3><canvas id="h1ScatterChart"></canvas></div>
+  <div class="chart-card"><h3>H3 · Page Type vs Conversion Score (Box)</h3><canvas id="h3BoxChart"></canvas></div>
+</div>
+
+<!-- 7. Feature Impact -->
+<div class="section-title" id="sec-feat" style="display:none">7 · Feature Impact Analysis</div>
+<div class="chart-grid" id="feat-charts" style="display:none">
+  <div class="chart-card"><h3>Correlation Heatmap</h3><canvas id="heatmapChart"></canvas></div>
+  <div class="chart-card"><h3>Feature Importance (Random Forest)</h3><canvas id="importanceChart"></canvas></div>
+</div>
+
+<!-- 8. Model -->
+<div class="section-title" id="sec-model" style="display:none">8 · Predictive Model</div>
+<div class="model-meta" id="model-meta" style="display:none"></div>
+<div class="chart-grid" id="model-charts" style="display:none">
+  <div class="chart-card"><h3>Actual vs Predicted (Conversion Score)</h3><canvas id="predScatterChart"></canvas></div>
+</div>
+
+<footer>PDF-to-HTML Converter · Analytics Dashboard · {{ job_id }}</footer>
+
+<script>
+// ──────────────────────────────────────────────────────────────────────────────
+// Colour palette
+// ──────────────────────────────────────────────────────────────────────────────
+const P = {
+  blue:   '#667eea', purple:'#764ba2', green:'#43e97b',
+  yellow:'#f8b500',  red:   '#f64f59', cyan: '#38d9f5',
+  orange:'#fc8643',  pink:  '#fa709a',
+};
+const C = Object.values(P);
+
+const TOOLTIP_BASE = {
+  backgroundColor: 'rgba(20,24,40,0.95)',
+  titleColor:      '#e8ecf5',
+  bodyColor:       '#8892a4',
+  borderColor:     'rgba(255,255,255,0.1)',
+  borderWidth:     1,
+  padding:         12,
+  cornerRadius:    8,
+  displayColors:   true,
+};
+
+ChartJS.defaults.color        = '#8892a4';
+ChartJS.defaults.borderColor  = 'rgba(255,255,255,0.07)';
+ChartJS.defaults.font.family  = "'Inter',sans-serif";
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Helpers
+// ──────────────────────────────────────────────────────────────────────────────
+function show(...ids){ ids.forEach(id => { const el = document.getElementById(id); if(el) el.style.display = ''; }); }
+function hide(id){ const el = document.getElementById(id); if(el) el.style.display = 'none'; }
+
+function gradientFill(ctx, top, bot){
+  const g = ctx.createLinearGradient(0,0,0,ctx.canvas.height);
+  g.addColorStop(0, top);
+  g.addColorStop(1, bot);
+  return g;
+}
+
+function sigLabel(p){ return p < 0.001 ? '***' : p < 0.01 ? '**' : p < 0.05 ? '*' : 'n.s.'; }
+
+function badgeClass(p){ return p < 0.05 ? 'badge-green' : 'badge-red'; }
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Fetch & render
+// ──────────────────────────────────────────────────────────────────────────────
+const JOB_ID = "{{ job_id }}";
+
+fetch(`/api/analysis_data/${JOB_ID}`)
+  .then(r => r.json())
+  .then(data => {
+    if(data.error){ throw new Error(data.error); }
+    hide('loading');
+    render(data);
+  })
+  .catch(err => {
+    hide('loading');
+    const box = document.getElementById('error-box');
+    box.style.display = '';
+    box.innerHTML = `<strong>⚠️ Analytics Error</strong><br>${err.message}`;
+  });
+
+function render(d){
+  // ── Summary Cards ────────────────────────────────────────────────────────
+  const sg = document.getElementById('summary-grid');
+  sg.style.display = '';
+  const cards = [
+    { val: d.summary.total_pages,         lbl: 'Total Pages' },
+    { val: d.summary.words_per_page,      lbl: 'Avg Words / Page' },
+    { val: d.summary.images_per_page,     lbl: 'Avg Images / Page' },
+    { val: d.summary.tables_per_page,     lbl: 'Avg Tables / Page' },
+    { val: d.summary.avg_quality_score + '%', lbl: 'Avg Quality Score' },
+    { val: d.summary.consistency_score + '%', lbl: 'Consistency Score' },
+  ];
+  sg.innerHTML = cards.map(c =>
+    `<div class="stat-card"><div class="val">${c.val}</div><div class="lbl">${c.lbl}</div></div>`
+  ).join('');
+
+  // ── 1. Density ───────────────────────────────────────────────────────────
+  show('sec-density','density-charts');
+  const pages   = d.density.map(r => 'P'+r.page);
+  const words   = d.density.map(r => r.word_count);
+  const imgs    = d.density.map(r => r.image_count);
+  const tables  = d.density.map(r => r.table_count);
+
+  new Chart(c('wordsBarChart'), {
+    type: 'bar',
+    data: {
+      labels: pages,
+      datasets: [{
+        label: 'Words',
+        data: words,
+        backgroundColor: ctx => {
+          const g = gradientFill(ctx.chart.ctx, P.blue+'cc', P.purple+'44');
+          return g;
+        },
+        borderRadius: 5, borderSkipped: false,
+      }]
+    },
+    options: chartOpts('Words', 'Page', 'Word Count'),
+  });
+
+  new Chart(c('pagesScatterChart'),{
+    type:'scatter',
+    data:{
+      datasets:[{
+        label:'Words per Page',
+        data: d.flow.pages.map((p,i) => ({x:p, y:d.flow.words[i]})),
+        backgroundColor: P.green+'aa',
+        pointRadius: 6, pointHoverRadius: 9,
+      }]
+    },
+    options: chartOpts('Scatter: Pages vs Words', 'Page', 'Words'),
+  });
+
+  // ── 2. Composition ────────────────────────────────────────────────────────
+  show('sec-comp','comp-charts');
+  const comp = d.composition;
+  const compLabels = ['Text Blocks','Images','Tables','Headings'];
+  const compData   = [comp.text, comp.images, comp.tables, comp.headings];
+  const compColors = [P.blue, P.green, P.yellow, P.orange];
+
+  new Chart(c('compPieChart'),{
+    type:'doughnut',
+    data:{ labels: compLabels, datasets:[{ data: compData, backgroundColor: compColors, hoverOffset: 10, borderWidth: 2, borderColor: '#161927' }] },
+    options:{
+      responsive:true,
+      plugins:{ legend:{ position:'bottom', labels:{ padding:16, color:'#e8ecf5' } }, tooltip:{ callbacks:{ label: ctx => ` ${ctx.label}: ${ctx.parsed}` }, ...TOOLTIP_BASE } }
+    }
+  });
+
+  new Chart(c('compStackedChart'),{
+    type:'bar',
+    data:{
+      labels: pages,
+      datasets:[
+        { label:'Words (÷10)', data: words.map(w=>Math.round(w/10)), backgroundColor: P.blue+'cc', borderRadius:3 },
+        { label:'Images',      data: imgs,   backgroundColor: P.green+'cc', borderRadius:3 },
+        { label:'Tables',      data: tables, backgroundColor: P.yellow+'cc', borderRadius:3 },
+      ]
+    },
+    options:{ ...chartOpts('Elements per Page','Page','Count'), scales:{x:{stacked:true},y:{stacked:true}} }
+  });
+
+  // ── 3. Flow ───────────────────────────────────────────────────────────────
+  show('sec-flow','flow-charts');
+  const flowPages = d.flow.pages.map(p=>'P'+p);
+
+  new Chart(c('flowWordsLine'),{
+    type:'line',
+    data:{
+      labels: flowPages,
+      datasets:[{
+        label:'Words',
+        data: d.flow.words,
+        borderColor: P.blue,
+        backgroundColor: P.blue+'22',
+        tension:0.4, fill:true,
+        pointRadius:4, pointHoverRadius:8,
+      }]
+    },
+    options: chartOpts('Words per Page (Flow)','Page','Words'),
+  });
+
+  new Chart(c('flowElemsLine'),{
+    type:'line',
+    data:{
+      labels: flowPages,
+      datasets:[
+        { label:'Total Elements', data: d.flow.elements, borderColor:P.cyan,   backgroundColor:P.cyan+'22',   tension:0.4, fill:true, pointRadius:4, pointHoverRadius:8 },
+        { label:'Words ÷10',      data: d.flow.words.map(w=>+(w/10).toFixed(1)), borderColor:P.orange, backgroundColor:P.orange+'22', tension:0.4, fill:false, pointRadius:4, pointHoverRadius:8 },
+      ]
+    },
+    options: chartOpts('Elements per Page (Multi-line)','Page','Count'),
+  });
+
+  // ── 4. Consistency ────────────────────────────────────────────────────────
+  show('sec-cons','cons-charts');
+  const bp = d.consistency.boxplot;
+
+  // Simulate a box-plot via floating bar
+  const bpDataset = [{
+    label:'Word Count Range',
+    data: bp.samples ? [[ bp.q1, bp.q3 ]].concat( (bp.samples||[]).slice(0,pages.length-1).map(()=>null) ) : [[0,10]],
+    backgroundColor: P.purple+'55',
+    borderColor: P.purple,
+    borderWidth: 2,
+    borderSkipped: false,
+    borderRadius: 3,
+  }];
+  if(bp.min !== undefined){
+    new Chart(c('consBoxChart'),{
+      type:'bar',
+      data:{
+        labels:['Q1-Q3','Median','Min','Max'],
+        datasets:[{
+          label:'Paragraph Words',
+          data:[ bp.q3-bp.q1, bp.median, bp.min, bp.max ],
+          backgroundColor:[P.blue+'aa',P.green+'aa',P.yellow+'aa',P.red+'aa'],
+          borderRadius:5, borderSkipped:false,
+        }]
+      },
+      options: chartOpts('Paragraph Length Stats','Metric','Words'),
+    });
+  }
+
+  const cscore = d.consistency.score;
+  new Chart(c('consScoreChart'),{
+    type:'doughnut',
+    data:{
+      labels:['Consistency Score','Gap'],
+      datasets:[{
+        data:[ cscore, 100-cscore ],
+        backgroundColor:[ P.green, '#1e2236' ],
+        borderWidth:0,
+        hoverOffset:4,
+      }]
+    },
+    options:{
+      cutout:'75%',
+      responsive:true,
+      plugins:{
+        legend:{ display:false },
+        tooltip:{ callbacks:{ label: ctx=>` ${ctx.parsed.toFixed(1)}%` }, ...TOOLTIP_BASE },
+        datalabels:{
+          display: idx => idx===0,
+          color: P.green,
+          font:{ size:28, weight:'800' },
+          formatter: v => v.toFixed(1)+'%',
+          anchor:'center', align:'center',
+        }
+      }
+    },
+    plugins:[ChartDataLabels],
+  });
+
+  // ── 5. Quality ────────────────────────────────────────────────────────────
+  show('sec-qual','qual-charts');
+  const qscores = d.quality.per_page.map(r=>r.conversion_score);
+  const qpages  = d.quality.per_page.map(r=>'P'+r.page);
+
+  new Chart(c('qualBarChart'),{
+    type:'bar',
+    data:{
+      labels: qpages,
+      datasets:[{
+        label:'Conversion Score',
+        data: qscores,
+        backgroundColor: qscores.map(s => s>=80 ? P.green+'bb' : s>=60 ? P.yellow+'bb' : P.red+'bb'),
+        borderRadius:4, borderSkipped:false,
+      }]
+    },
+    options: chartOpts('Conversion Quality per Page','Page','Score (0-100)'),
+  });
+
+  // Histogram buckets
+  const buckets = [0,0,0,0,0];
+  qscores.forEach(s=>{ const idx=Math.min(4, Math.floor(s/20)); buckets[idx]++; });
+  new Chart(c('qualDistChart'),{
+    type:'bar',
+    data:{
+      labels:['0-20','20-40','40-60','60-80','80-100'],
+      datasets:[{ label:'Pages', data:buckets, backgroundColor:[P.red+'bb',P.orange+'bb',P.yellow+'bb',P.cyan+'bb',P.green+'bb'], borderRadius:4, borderSkipped:false }]
+    },
+    options: chartOpts('Score Distribution','Score Range','Pages'),
+  });
+
+  // ── 6. Hypothesis ─────────────────────────────────────────────────────────
+  show('sec-hyp','hypo-cards','hyp-charts');
+  const hd = d.hypothesis;
+  const hypoHtml =
+    hypoCard('H1', 'Complexity → Conversion Score', [
+      badge('r = '+hd.h1.r,'badge-blue'),
+      badge('p = '+hd.h1.p, badgeClass(hd.h1.p)),
+      badge(sigLabel(hd.h1.p),'badge-yellow'),
+    ], hd.h1.p<0.05 ? 'Statistically significant correlation found.' : 'No significant correlation found.') +
+    hypoCard('H2', 'Table-heavy vs. Non-table Pages (T-test)', [
+      badge('t = '+hd.h2.t,'badge-blue'),
+      badge('p = '+hd.h2.p, badgeClass(hd.h2.p)),
+      badge(sigLabel(hd.h2.p),'badge-yellow'),
+    ], hd.h2.p<0.05 ? 'Table-heavy pages have significantly lower conversion quality.' : 'No significant difference detected.') +
+    hypoCard('H3', 'Page Type vs. Conversion Score (ANOVA)', [
+      badge('F = '+hd.h3.f,'badge-blue'),
+      badge('p = '+hd.h3.p, badgeClass(hd.h3.p)),
+      badge(sigLabel(hd.h3.p),'badge-yellow'),
+    ], hd.h3.p<0.05 ? 'Conversion quality differs significantly by page type.' : 'No significant ANOVA effect.');
+
+  document.getElementById('hypo-cards').innerHTML = hypoHtml;
+
+  // H1 scatter
+  new Chart(c('h1ScatterChart'),{
+    type:'scatter',
+    data:{
+      datasets:[{
+        label:'Page',
+        data: hd.h1.scatter.map(pt=>({x:pt.x, y:pt.y})),
+        backgroundColor: P.blue+'99',
+        pointRadius:7, pointHoverRadius:11,
+      }]
+    },
+    options: chartOpts('Complexity vs Quality Score','Total Elements','Conversion Score'),
+  });
+
+  // H3 box-by-type
+  const btypes = Object.keys(hd.h3.boxplot_by_type);
+  const h3vData = btypes.map(t => {
+    const b = hd.h3.boxplot_by_type[t];
+    return b.max - b.min;
+  });
+  new Chart(c('h3BoxChart'),{
+    type:'bar',
+    data:{
+      labels: btypes.map(t=>t.replace('_',' ')),
+      datasets:[
+        { label:'Median Score', data: btypes.map(t=>hd.h3.boxplot_by_type[t].median), backgroundColor:[P.blue+'bb',P.green+'bb',P.yellow+'bb'], borderRadius:5, borderSkipped:false },
+        { label:'Range (Max-Min)', data: h3vData, backgroundColor: btypes.map(()=>P.red+'44'), borderRadius:5, borderSkipped:false },
+      ]
+    },
+    options: chartOpts('Page Type vs Conversion Score','Page Type','Score'),
+  });
+
+  // ── 7. Feature Impact ─────────────────────────────────────────────────────
+  show('sec-feat','feat-charts');
+  const fi = d.feature_impact;
+
+  // Heatmap via bar workaround (one bar per cell, coloured by value)
+  const heatLabels = fi.labels;
+  const heatFlat   = fi.matrix.flat();
+  const heatCols   = fi.matrix.length;
+
+  // Draw as a "grid" using bar chart with categorical axis
+  // Each dataset = one row of the correlation matrix
+  const heatDatasets = fi.labels.map((row, ri) => ({
+    label: row,
+    data:  fi.matrix[ri],
+    backgroundColor: fi.matrix[ri].map(v =>
+      v>0.7 ? P.green+'ee' : v>0.4 ? P.cyan+'dd' : v>0 ? P.blue+'88' : v<-0.7 ? P.red+'ee' : v<-0.4 ? P.orange+'cc' : '#8892a433'
+    ),
+    borderRadius: 2, borderSkipped: false, barThickness: 24,
+  }));
+
+  new Chart(c('heatmapChart'),{
+    type:'bar',
+    data:{ labels: heatLabels, datasets: heatDatasets },
+    options:{
+      responsive:true,
+      indexAxis:'x',
+      plugins:{
+        legend:{ labels:{ color:'#8892a4', font:{ size:10 } }, position:'bottom' },
+        tooltip:{ callbacks:{ label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y.toFixed(3)}` }, ...TOOLTIP_BASE },
+      },
+      scales:{
+        x:{ stacked:false, grid:{ color:'rgba(255,255,255,0.04)' } },
+        y:{ stacked:false, grid:{ color:'rgba(255,255,255,0.04)' }, min:-1, max:1 },
+      }
+    }
+  });
+
+  const impLabels = Object.keys(fi.importance).map(l => l.replace('_',' '));
+  const impVals   = Object.values(fi.importance);
+
+  new Chart(c('importanceChart'),{
+    type:'bar',
+    data:{
+      labels: impLabels,
+      datasets:[{
+        label:'Feature Importance',
+        data: impVals,
+        backgroundColor: C.slice(0, impLabels.length).map(c=>c+'cc'),
+        borderRadius: 6, borderSkipped:false,
+      }]
+    },
+    options:{ ...chartOpts('Feature Importance','Feature','Importance'), indexAxis:'y' },
+  });
+
+  // ── 8. Predictive Model ───────────────────────────────────────────────────
+  show('sec-model','model-meta','model-charts');
+  const md = d.predictive_model;
+
+  document.getElementById('model-meta').innerHTML =
+    chip('Random Forest R²','badge-green', (md.r2*100).toFixed(1)+'%') +
+    chip('Linear R²','badge-blue', (md.lr_r2*100).toFixed(1)+'%') +
+    chip('RMSE','badge-yellow', md.rmse.toFixed(2));
+
+  const avp     = md.actual_vs_predicted;
+  const actuals = avp.map(p=>p.actual);
+  const preds   = avp.map(p=>p.predicted);
+  const minV    = Math.min(...actuals,...preds)-5;
+  const maxV    = Math.max(...actuals,...preds)+5;
+
+  new Chart(c('predScatterChart'),{
+    type:'scatter',
+    data:{
+      datasets:[
+        { label:'Actual vs Predicted', data: avp.map(p=>({x:p.actual, y:p.predicted})), backgroundColor: P.blue+'aa', pointRadius:6, pointHoverRadius:10 },
+        { label:'Ideal (y=x)',         data:[{x:minV,y:minV},{x:maxV,y:maxV}], type:'line', borderColor:P.green+'88', borderDash:[6,4], pointRadius:0, borderWidth:2 },
+      ]
+    },
+    options:{
+      responsive:true,
+      plugins:{
+        legend:{ labels:{ color:'#e8ecf5' }, position:'bottom' },
+        tooltip:{ callbacks:{ label: ctx => ` Actual: ${ctx.parsed.x.toFixed(1)}, Predicted: ${ctx.parsed.y.toFixed(1)}` }, ...TOOLTIP_BASE },
+      },
+      scales:{
+        x:{ title:{ display:true, text:'Actual Score', color:'#8892a4' }, grid:{ color:'rgba(255,255,255,0.05)' } },
+        y:{ title:{ display:true, text:'Predicted Score', color:'#8892a4' }, grid:{ color:'rgba(255,255,255,0.05)' } },
+      }
+    }
+  });
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Mini helpers
+// ──────────────────────────────────────────────────────────────────────────────
+function c(id){ return document.getElementById(id).getContext('2d'); }
+
+function chartOpts(title, xLabel, yLabel){
+  return {
+    responsive:true,
+    animation:{ duration:800, easing:'easeInOutQuart' },
+    plugins:{
+      legend:{ labels:{ color:'#e8ecf5', padding:14, font:{ size:12 } } },
+      tooltip: TOOLTIP_BASE,
+    },
+    scales:{
+      x:{ title:{ display:!!xLabel, text:xLabel, color:'#8892a4' }, grid:{ color:'rgba(255,255,255,0.05)' }, ticks:{ maxRotation:45 } },
+      y:{ title:{ display:!!yLabel, text:yLabel, color:'#8892a4' }, grid:{ color:'rgba(255,255,255,0.07)' } },
+    }
+  };
+}
+
+function badge(text, cls){ return `<span class="badge ${cls}">${text}</span>`; }
+function chip(label, cls, val){
+  return `<div class="model-chip">${label}: <strong class="${cls.replace('badge-','')}">${val}</strong></div>`;
+}
+function hypoCard(code, title, badges, note){
+  return `<div class="hypo-card">
+    <h4>${code} · ${title}</h4>
+    <div class="stat-row">${badges.join('')}</div>
+    <p>${note}</p>
+  </div>`;
+}
+</script>
+</body>
+</html>
