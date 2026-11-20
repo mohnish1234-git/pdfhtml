@@ -1,0 +1,324 @@
+{
+  "job_id": "b3da7255-16dd-4fbd-b340-010708ce4752",
+  "tables": [
+    {
+      "job_id": "b3da7255-16dd-4fbd-b340-010708ce4752",
+      "page": 7,
+      "table_id": "page_7_table_1",
+      "sheet_name": "Page7_Table1",
+      "bbox": null,
+      "headers": [
+        "Hito ardinteengo/Phonétique préventive",
+        "Faɗo, waɗ,ɗati (ɗ)"
+      ],
+      "header_aliases": {
+        "Hito ardinteengo/Phonétique préventive": [
+          "hito ardinteengo phon tique pr ventive"
+        ],
+        "Faɗo, waɗ,ɗati (ɗ)": [
+          "fa o wa ati"
+        ]
+      },
+      "rows": [
+        {
+          "Hito ardinteengo/Phonétique préventive": "Ngonka jokkondiral/kaaldigal/Situation decommunication",
+          "Faɗo, waɗ,ɗati (ɗ)": "Janngooɓe ɓee nana e nder kalaas. Musee ina woni e jannginde.Maari won ko yiɗi laaɓtindaade."
+        },
+        {
+          "Hito ardinteengo/Phonétique préventive": "Kaaldigal/Dialogue",
+          "Faɗo, waɗ,ɗati (ɗ)": "Maari :Musee, miɗo yiɗi haalde.Musee :Eey Maari, aɗa waawi haalde !Maari :A jaaraama musee !"
+        },
+        {
+          "Hito ardinteengo/Phonétique préventive": "Mbildi/ Structure",
+          "Faɗo, waɗ,ɗati (ɗ)": "baɗo + baɗal + baɗal muumal"
+        },
+        {
+          "Hito ardinteengo/Phonétique préventive": "Kelmeendi/ Vocabulaire",
+          "Faɗo, waɗ,ɗati (ɗ)": "Miɗo yiɗi … A jaaraama."
+        },
+        {
+          "Hito ardinteengo/Phonétique préventive": "Firlito haaldaango (Firlitobaɗal e nder kaaldigal)/Conjugaison dialoguée",
+          "Faɗo, waɗ,ɗati (ɗ)": "Yiɗde (yimɓe tato teelal ɓee)."
+        }
+      ],
+      "header_row_index": 0,
+      "raw_rows": [
+        [
+          "Hito ardinteengo/Phonétique préventive",
+          "Faɗo, waɗ,ɗati (ɗ)"
+        ],
+        [
+          "Ngonka jokkondiral/kaaldigal/Situation decommunication",
+          "Janngooɓe ɓee nana e nder kalaas. Musee ina woni e jannginde.Maari won ko yiɗi laaɓtindaade."
+        ],
+        [
+          "Kaaldigal/Dialogue",
+          "Maari :Musee, miɗo yiɗi haalde.Musee :Eey Maari, aɗa waawi haalde !Maari :A jaaraama musee !"
+        ],
+        [
+          "Mbildi/ Structure",
+          "baɗo + baɗal + baɗal muumal"
+        ],
+        [
+          "Kelmeendi/ Vocabulaire",
+          "Miɗo yiɗi … A jaaraama."
+        ],
+        [
+          "Firlito haaldaango (Firlitobaɗal e nder kaaldigal)/Conjugaison dialoguée",
+          "Yiɗde (yimɓe tato teelal ɓee)."
+        ]
+      ]
+    },
+    {
+      "job_id": "b3da7255-16dd-4fbd-b340-010708ce4752",
+      "page": 8,
+      "table_id": "page_8_table_1",
+      "sheet_name": "Page8_Table1",
+      "bbox": null,
+      "headers": [
+        "Étapes",
+        "Rôle de l’E",
+        "Rôle des élèves (LVs)"
+      ],
+      "header_aliases": {
+        "Étapes": [
+          "tapes"
+        ],
+        "Rôle de l’E": [
+          "r le de l e"
+        ],
+        "Rôle des élèves (LVs)": [
+          "r le des l ves lvs"
+        ]
+      },
+      "rows": [
+        {
+          "Étapes": "Daawe/ Étapes",
+          "Rôle de l’E": "-Prononce et fait répéter des motscontenant[ɗ]en position médiane(faɗo), en position finale(waɗ) et enposition initiale(ɗati).-Prononce et fait répéter[ɗ]",
+          "Rôle des élèves (LVs)": "-écoutent.-répètent."
+        },
+        {
+          "Étapes": "Hito ardinteengo/Phonétiquepréventive",
+          "Rôle de l’E": "-Présente la situation de communication :Janngooɓe ɓee nana e nder kalaas.Musee ina woni e jannginde. Maari wonko yiɗi laaɓtindaade.",
+          "Rôle des élèves (LVs)": "-Suivent et écoutent."
+        },
+        {
+          "Étapes": "Kollirgol ngonkajokkondiral/(kaaldigal)/Présentation dela situation decommunication",
+          "Rôle de l’E": "-Pose les questions suivantes :• Hol nokku gonaaɗo ?• Hol wonɓe e nokku hee ?• Hol ko Musee woni e waɗde ?• Mbele ko Musee haali koo inalaaɓti e Maari ?• Hol ko Maari waawi waɗde ?",
+          "Rôle des élèves (LVs)": "-Répondent :• E nder kalaas.• Musee e elewaaji.• O woni ko ejannginde.• laaɓtaani.• Naamnaade."
+        },
+        {
+          "Étapes": "Ƴeewtagolfaamaamuyangonka kaaldigalngal/Vérificationde la compréhensionde la situation decommunication",
+          "Rôle de l’E": "-Présente l’intention de communication  :Maari yiɗi ko laaɓtindaade. O yiɗi ƴet-tude konngol ngam naamnaade Museeoo.",
+          "Rôle des élèves (LVs)": "-Ecoutent"
+        },
+        {
+          "Étapes": "Kollirgol anniyajokkondiral/Présentation del’intention decommunication",
+          "Rôle de l’E": "-Pose les questions et recueille au fur et àmesure les productions des LVs :• Hol ko Maari waawi naamnaade Musee oo ?• Hol ko Musee waawi jaabtaade ?• Hol ko Maari waawi wiide haa yettudeMusee ?",
+          "Rôle des élèves (LVs)": "-Produisent :Maari : Musee, miɗoyiɗi haalde.Musee : Eey Maari, aɗawaawi haalde !Maari : A jaaraamamusee !"
+        },
+        {
+          "Étapes": "Ɗaɓɓitgol biyanɗe(Jiilagol jaŋti)/Recherched’énoncés",
+          "Rôle de l’E": "-Explique les mots nouveaux de manièreconcrète, en collaboration avec les LVs.-Explique la structure de manièreconcrète, en collaboration avec les LVs  :baɗo + baɗal+ baɗal muumal ».NB : E fait ressortir la dimension depolitesse contenue dans la demande.-Fait mémoriser les répliques par leurrépétition systématique.",
+          "Rôle des élèves (LVs)": "-Participent auxexplications.-Ecoutent et répètentles répliques."
+        },
+        {
+          "Étapes": "Pammingol mbildiijiɗii e kelme ɗee,tawa ko engonkaaji tabitɗi,keewcertuɗi/Explication desstructures et desmots dans dessituations concrèteset variées",
+          "Rôle de l’E": "-S’appuie sur des situations concrètes etvariées pour amener les LVs à conjuguerde manière dialoguée le verbe ciblé dansles trois personnes du singulier :•Hol ko njiɗ-ɗaa ?•Hol ko njiɗ-mi ?•Hol ko Maari yiɗi ?",
+          "Rôle des élèves (LVs)": "-Dialoguent avec l’E.-Dialoguent avec leurscamarades.• Njiɗ-mi ko haalde.• Njiɗ-ɗaa ko haalde.• O yiɗi ko haalde."
+        },
+        {
+          "Étapes": "Firlito haaldaango/Conjugaisondialoguée",
+          "Rôle de l’E": "-S’appuie sur des situations concrètes etvariées pour amener les LVs à conjuguerde manière dialoguée le verbe ciblé dansles trois personnes du singulier :•Hol ko njiɗ-ɗaa ?•Hol ko njiɗ-mi ?•Hol ko Maari yiɗi ?",
+          "Rôle des élèves (LVs)": "-Dialoguent avec l’E.-Dialoguent avec leurscamarades.• Njiɗ-mi ko haalde.• Njiɗ-ɗaa ko haalde.• O yiɗi ko haalde."
+        }
+      ],
+      "header_row_index": 0,
+      "raw_rows": [
+        [
+          "Étapes",
+          "Rôle de l’E",
+          "Rôle des élèves (LVs)"
+        ],
+        [
+          "Daawe/ Étapes",
+          "-Prononce et fait répéter des motscontenant[ɗ]en position médiane(faɗo), en position finale(waɗ) et enposition initiale(ɗati).-Prononce et fait répéter[ɗ]",
+          "-écoutent.-répètent."
+        ],
+        [
+          "Hito ardinteengo/Phonétiquepréventive",
+          "-Présente la situation de communication :Janngooɓe ɓee nana e nder kalaas.Musee ina woni e jannginde. Maari wonko yiɗi laaɓtindaade.",
+          "-Suivent et écoutent."
+        ],
+        [
+          "Kollirgol ngonkajokkondiral/(kaaldigal)/Présentation dela situation decommunication",
+          "-Pose les questions suivantes :• Hol nokku gonaaɗo ?• Hol wonɓe e nokku hee ?• Hol ko Musee woni e waɗde ?• Mbele ko Musee haali koo inalaaɓti e Maari ?• Hol ko Maari waawi waɗde ?",
+          "-Répondent :• E nder kalaas.• Musee e elewaaji.• O woni ko ejannginde.• laaɓtaani.• Naamnaade."
+        ],
+        [
+          "Ƴeewtagolfaamaamuyangonka kaaldigalngal/Vérificationde la compréhensionde la situation decommunication",
+          "-Présente l’intention de communication  :Maari yiɗi ko laaɓtindaade. O yiɗi ƴet-tude konngol ngam naamnaade Museeoo.",
+          "-Ecoutent"
+        ],
+        [
+          "Kollirgol anniyajokkondiral/Présentation del’intention decommunication",
+          "-Pose les questions et recueille au fur et àmesure les productions des LVs :• Hol ko Maari waawi naamnaade Musee oo ?• Hol ko Musee waawi jaabtaade ?• Hol ko Maari waawi wiide haa yettudeMusee ?",
+          "-Produisent :Maari : Musee, miɗoyiɗi haalde.Musee : Eey Maari, aɗawaawi haalde !Maari : A jaaraamamusee !"
+        ],
+        [
+          "Ɗaɓɓitgol biyanɗe(Jiilagol jaŋti)/Recherched’énoncés",
+          "-Explique les mots nouveaux de manièreconcrète, en collaboration avec les LVs.-Explique la structure de manièreconcrète, en collaboration avec les LVs  :baɗo + baɗal+ baɗal muumal ».NB : E fait ressortir la dimension depolitesse contenue dans la demande.-Fait mémoriser les répliques par leurrépétition systématique.",
+          "-Participent auxexplications.-Ecoutent et répètentles répliques."
+        ],
+        [
+          "Pammingol mbildiijiɗii e kelme ɗee,tawa ko engonkaaji tabitɗi,keewcertuɗi/Explication desstructures et desmots dans dessituations concrèteset variées",
+          "-S’appuie sur des situations concrètes etvariées pour amener les LVs à conjuguerde manière dialoguée le verbe ciblé dansles trois personnes du singulier :•Hol ko njiɗ-ɗaa ?•Hol ko njiɗ-mi ?•Hol ko Maari yiɗi ?",
+          "-Dialoguent avec l’E.-Dialoguent avec leurscamarades.• Njiɗ-mi ko haalde.• Njiɗ-ɗaa ko haalde.• O yiɗi ko haalde."
+        ],
+        [
+          "Firlito haaldaango/Conjugaisondialoguée",
+          "-S’appuie sur des situations concrètes etvariées pour amener les LVs à conjuguerde manière dialoguée le verbe ciblé dansles trois personnes du singulier :•Hol ko njiɗ-ɗaa ?•Hol ko njiɗ-mi ?•Hol ko Maari yiɗi ?",
+          "-Dialoguent avec l’E.-Dialoguent avec leurscamarades.• Njiɗ-mi ko haalde.• Njiɗ-ɗaa ko haalde.• O yiɗi ko haalde."
+        ]
+      ]
+    },
+    {
+      "job_id": "b3da7255-16dd-4fbd-b340-010708ce4752",
+      "page": 9,
+      "table_id": "page_9_table_1",
+      "sheet_name": "Page9_Table1",
+      "bbox": null,
+      "headers": [
+        "Baɗgol golle kaaldigale nder goomuujijanngooɓe/Production dedialogues par groupesd’LVs",
+        "-Fait jouer le dialogue parplusieurs groupes d’LVs à partirdes répliques produites et en serapprochant le plus possible dudialogue de référence.-Dit aux LVs :Jooni mbaɗen goomuuji tokoosingam tafde konngi tuugniiɗi ekonngi ɗi njanngu-ɗen ɗii.",
+        "-S’appuient sur les répliquesproduites pour jouer lesdialogues.-Les élèves s'exécutent."
+      ],
+      "header_aliases": {
+        "Baɗgol golle kaaldigale nder goomuujijanngooɓe/Production dedialogues par groupesd’LVs": [
+          "ba gol golle kaaldigale nder goomuujijanngoo e production dedialogues par groupesd lvs"
+        ],
+        "-Fait jouer le dialogue parplusieurs groupes d’LVs à partirdes répliques produites et en serapprochant le plus possible dudialogue de référence.-Dit aux LVs :Jooni mbaɗen goomuuji tokoosingam tafde konngi tuugniiɗi ekonngi ɗi njanngu-ɗen ɗii.": [
+          "fait jouer le dialogue parplusieurs groupes d lvs partirdes r pliques produites et en serapprochant le plus possible dudialogue de r f rence dit aux lvs jooni mba en goomuuji tokoosingam tafde konngi tuugnii i ekonngi i njanngu en ii"
+        ],
+        "-S’appuient sur les répliquesproduites pour jouer lesdialogues.-Les élèves s'exécutent.": [
+          "s appuient sur les r pliquesproduites pour jouer lesdialogues les l ves s ex cutent"
+        ]
+      },
+      "rows": [
+        {
+          "Baɗgol golle kaaldigale nder goomuujijanngooɓe/Production dedialogues par groupesd’LVs": "Teeŋtingol ko janngaakoo, fawaade elomtingol e dewtagolFixation des notionspar substitution, parrépétition",
+          "-Fait jouer le dialogue parplusieurs groupes d’LVs à partirdes répliques produites et en serapprochant le plus possible dudialogue de référence.-Dit aux LVs :Jooni mbaɗen goomuuji tokoosingam tafde konngi tuugniiɗi ekonngi ɗi njanngu-ɗen ɗii.": "-Demande :Hol ko Maari wi’i musee oo nde oyiɗi ƴettude konngol ?-Propose d’autres situations :Sammba ina yiɗi yaltude, hol koo waawi wiide Madam oo ?-Pose les questions suivantes :• Hol ko Maari wi’i musee oocaggal nde o ƴetti konngol ?• Madam oo rokkii Malalbinndirgel.• Hol ko Malal waawi wiide ngamyettude mo ?-S’appuie sur d’autres situationspour faire utiliser« A jaaraama ».",
+          "-S’appuient sur les répliquesproduites pour jouer lesdialogues.-Les élèves s'exécutent.": "-Répondent aux questions :• Musee, miɗo yiɗi haalde.• Madam, miɗo yiɗi yaltude.• A jaaraama.• A jaaraamaRépètent les unitéslinguistiques à fixer en lesutilisant dans d’autresphrases conformes auxsituations décrites."
+        },
+        {
+          "Baɗgol golle kaaldigale nder goomuujijanngooɓe/Production dedialogues par groupesd’LVs": "Baɗgol kaaldule /Production dedialogues",
+          "-Fait jouer le dialogue parplusieurs groupes d’LVs à partirdes répliques produites et en serapprochant le plus possible dudialogue de référence.-Dit aux LVs :Jooni mbaɗen goomuuji tokoosingam tafde konngi tuugniiɗi ekonngi ɗi njanngu-ɗen ɗii.": "-Fait rejouer le dialogue parplusieurs groupes d’LVs à partirdes éléments fixés-Dit :Jooni, mbaɗen goomuujitokoosi ngam tafde jeewtetuugnaade e konngi ɗi njanngu-ɗen ɗii.-Demande  :A jippiima lekkol, aƴettii deftere maa taro. Neenemaa naamni ma ko mbaɗataa.-Par des échanges, faire sortir lesautres formes verbales.",
+          "-S’appuient sur les répliquesproduites pour jouer lesdialogues.-Les élèves s'exécutent.": "-Jouent les dialogues.Conjuguent systématiquement :•Miɗo yiɗi tarde.•Aɗa yiɗi tarde.•Omo yiɗi tarde."
+        },
+        {
+          "Baɗgol golle kaaldigale nder goomuujijanngooɓe/Production dedialogues par groupesd’LVs": "Hito peewtingol/Phonétique corrective",
+          "-Fait jouer le dialogue parplusieurs groupes d’LVs à partirdes répliques produites et en serapprochant le plus possible dudialogue de référence.-Dit aux LVs :Jooni mbaɗen goomuuji tokoosingam tafde konngi tuugniiɗi ekonngi ɗi njanngu-ɗen ɗii.": "-Corrige les éventuelles dernièresprononciations défectueuses.",
+          "-S’appuient sur les répliquesproduites pour jouer lesdialogues.-Les élèves s'exécutent.": "-Répètent après l’E."
+        }
+      ],
+      "header_row_index": 0,
+      "raw_rows": [
+        [
+          "Baɗgol golle kaaldigale nder goomuujijanngooɓe/Production dedialogues par groupesd’LVs",
+          "-Fait jouer le dialogue parplusieurs groupes d’LVs à partirdes répliques produites et en serapprochant le plus possible dudialogue de référence.-Dit aux LVs :Jooni mbaɗen goomuuji tokoosingam tafde konngi tuugniiɗi ekonngi ɗi njanngu-ɗen ɗii.",
+          "-S’appuient sur les répliquesproduites pour jouer lesdialogues.-Les élèves s'exécutent."
+        ],
+        [
+          "Teeŋtingol ko janngaakoo, fawaade elomtingol e dewtagolFixation des notionspar substitution, parrépétition",
+          "-Demande :Hol ko Maari wi’i musee oo nde oyiɗi ƴettude konngol ?-Propose d’autres situations :Sammba ina yiɗi yaltude, hol koo waawi wiide Madam oo ?-Pose les questions suivantes :• Hol ko Maari wi’i musee oocaggal nde o ƴetti konngol ?• Madam oo rokkii Malalbinndirgel.• Hol ko Malal waawi wiide ngamyettude mo ?-S’appuie sur d’autres situationspour faire utiliser« A jaaraama ».",
+          "-Répondent aux questions :• Musee, miɗo yiɗi haalde.• Madam, miɗo yiɗi yaltude.• A jaaraama.• A jaaraamaRépètent les unitéslinguistiques à fixer en lesutilisant dans d’autresphrases conformes auxsituations décrites."
+        ],
+        [
+          "Baɗgol kaaldule /Production dedialogues",
+          "-Fait rejouer le dialogue parplusieurs groupes d’LVs à partirdes éléments fixés-Dit :Jooni, mbaɗen goomuujitokoosi ngam tafde jeewtetuugnaade e konngi ɗi njanngu-ɗen ɗii.-Demande  :A jippiima lekkol, aƴettii deftere maa taro. Neenemaa naamni ma ko mbaɗataa.-Par des échanges, faire sortir lesautres formes verbales.",
+          "-Jouent les dialogues.Conjuguent systématiquement :•Miɗo yiɗi tarde.•Aɗa yiɗi tarde.•Omo yiɗi tarde."
+        ],
+        [
+          "Hito peewtingol/Phonétique corrective",
+          "-Corrige les éventuelles dernièresprononciations défectueuses.",
+          "-Répètent après l’E."
+        ]
+      ]
+    },
+    {
+      "job_id": "b3da7255-16dd-4fbd-b340-010708ce4752",
+      "page": 9,
+      "table_id": "page_9_table_2",
+      "sheet_name": "Page9_Table2",
+      "bbox": null,
+      "headers": [
+        "Column 1"
+      ],
+      "header_aliases": {
+        "Column 1": [
+          "column 1"
+        ]
+      },
+      "rows": [
+        {
+          "Column 1": "Lecture L1 : Acquisition globale des lettres de l’alphabet"
+        },
+        {
+          "Column 1": ""
+        },
+        {
+          "Column 1": "Activité 1 : Chanson de l’alphabet"
+        }
+      ],
+      "header_row_index": null,
+      "raw_rows": [
+        [
+          "Lecture L1 : Acquisition globale des lettres de l’alphabet"
+        ],
+        [
+          ""
+        ],
+        [
+          "Activité 1 : Chanson de l’alphabet"
+        ]
+      ]
+    },
+    {
+      "job_id": "b3da7255-16dd-4fbd-b340-010708ce4752",
+      "page": 9,
+      "table_id": "page_9_table_3",
+      "sheet_name": "Page9_Table3",
+      "bbox": null,
+      "headers": [
+        "abɓABƁ",
+        "cdɗp. 10CDƊ"
+      ],
+      "header_aliases": {
+        "abɓABƁ": [
+          "ab ab"
+        ],
+        "cdɗp. 10CDƊ": [
+          "cd p 10cd"
+        ]
+      },
+      "rows": [
+        {
+          "abɓABƁ": "Mise en situation :Nous allons chanter la chanson de l'alphabet avec des lettresminuscules / majuscules. Observez ce que j’ai écrit au tableau.E appelle 3 LVs au tableau et leur demande d’essayer de chanter tour à tour la chanson del’alphabet.",
+          "cdɗp. 10CDƊ": ""
+        }
+      ],
+      "header_row_index": 0,
+      "raw_rows": [
+        [
+          "abɓABƁ",
+          "cdɗp. 10CDƊ"
+        ],
+        [
+          "Mise en situation :Nous allons chanter la chanson de l'alphabet avec des lettresminuscules / majuscules. Observez ce que j’ai écrit au tableau.E appelle 3 LVs au tableau et leur demande d’essayer de chanter tour à tour la chanson del’alphabet.",
+          ""
+        ]
+      ]
+    }
+  ],
+  "source": "document_json"
+}

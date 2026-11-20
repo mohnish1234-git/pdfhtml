@@ -1,0 +1,308 @@
+{
+    "document": {
+        "pages": [
+            {
+                "page_number": 1,
+                "sections": [
+                    {
+                        "heading": {
+                            "level": 2,
+                            "text": "Oviya T SStudent"
+                        },
+                        "elements": [
+                            {
+                                "type": "paragraph",
+                                "text": "Chennai"
+                            },
+                            {
+                                "type": "paragraph",
+                                "text": "| oviya2410048 @ssn.edu.in"
+                            },
+                            {
+                                "type": "paragraph",
+                                "text": "I am a motivated Information Technology student interested in full-stack development. I have solid knowledge of programming, datastructures, machine learning, and database systems. I have hands-on experience in developing Python and Java-based applicationsintegrated with relational databases for efficient data storage and retrieval. I am passionate about data analytics, backend systems, andbuilding scalable, real-world software solutions."
+                            }
+                        ],
+                        "subsections": []
+                    },
+                    {
+                        "heading": {
+                            "level": 2,
+                            "text": "WORK EXPERIENCE"
+                        },
+                        "elements": [
+                            {
+                                "type": "list",
+                                "items": [
+                                    {
+                                        "text": "Ailaysa,AI/ML Intern06/2025 – 07/2025  | Chennai",
+                                        "children": []
+                                    },
+                                    {
+                                        "text": "•Gained hands-on exposure to AI/ ML project development, focusing on Natural Language Processing (NLP) techniques used in contentgeneration systems.",
+                                        "children": []
+                                    },
+                                    {
+                                        "text": "•Learned and applied Retrieval-Augmented Generation (RAG) concepts through guided tasks, understanding knowledge retrieval andLLM-based response grounding.",
+                                        "children": []
+                                    },
+                                    {
+                                        "text": "•Collaborated with team members in a professional environment, developing problem-solving, communication, and teamwork skillsthrough discussions and feedback.",
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ],
+                        "subsections": []
+                    },
+                    {
+                        "heading": {
+                            "level": 2,
+                            "text": "PROJECTS"
+                        },
+                        "elements": [],
+                        "subsections": []
+                    },
+                    {
+                        "heading": {
+                            "level": 2,
+                            "text": "Kelunga - Multilingual, Hybrid RAG-based document scannerAs part of Techsprint Hackathon,"
+                        },
+                        "elements": [
+                            {
+                                "type": "list",
+                                "items": [
+                                    {
+                                        "text": "•Created an AI-powered document scanner that extracts text and explains government documents in local languages",
+                                        "children": []
+                                    },
+                                    {
+                                        "text": "•Enhanced reliability using a Hybrid RAG knowledge base to ground responses in relevant legal and policy documents",
+                                        "children": []
+                                    },
+                                    {
+                                        "text": "•Implemented a full-stack solution using React, FastAPI, and LLM APIs",
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ],
+                        "subsections": []
+                    },
+                    {
+                        "heading": {
+                            "level": 2,
+                            "text": "Blood Bank Management System - Desktop Application"
+                        },
+                        "elements": [
+                            {
+                                "type": "list",
+                                "items": [
+                                    {
+                                        "text": "•Built a desktop-based application to manage blood donors, recipients, and blood stock using JavaFX for UI and Oracle Database forstorage.",
+                                        "children": []
+                                    },
+                                    {
+                                        "text": "•Implemented automatic blood stock updates during donation and transfusion using backend logic, ensuring real-time availability andpreventing errors.",
+                                        "children": []
+                                    },
+                                    {
+                                        "text": "•Used Hibernate ORM with DAO architecture to handle database operations cleanly and maintain structured, maintainable code.",
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ],
+                        "subsections": []
+                    },
+                    {
+                        "heading": {
+                            "level": 2,
+                            "text": "SSN Secure Share - LAN-based File Sharing Application"
+                        },
+                        "elements": [
+                            {
+                                "type": "list",
+                                "items": [
+                                    {
+                                        "text": "•Developed a LAN-based file sharing application enabling users to transfer files securely within the same network without internet orcloud services.",
+                                        "children": []
+                                    },
+                                    {
+                                        "text": "•Implemented features including multi-user file sharing, file uploads, inbox management and an admin dashboard to monitor logs.",
+                                        "children": []
+                                    },
+                                    {
+                                        "text": "•Displayed network information and connected devices to facilitate seamless peer-to-peer communication within the local network.",
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ],
+                        "subsections": []
+                    },
+                    {
+                        "heading": {
+                            "level": 2,
+                            "text": "SKILLS"
+                        },
+                        "elements": [
+                            {
+                                "type": "paragraph",
+                                "text": "LanguagesC, Java, Python, JavaScript"
+                            },
+                            {
+                                "type": "paragraph",
+                                "text": "Computer Science & Core ConceptsData Structures & Algorithms, Object-Oriented Programming(OOP), Computer Networks, Software Engineering Fundamentals,Databases"
+                            },
+                            {
+                                "type": "paragraph",
+                                "text": "Soft SkillsCommunication, Teamwork, Leadership, Time Management,Problem Solving, Critical Thinking, Adaptability"
+                            }
+                        ],
+                        "subsections": []
+                    },
+                    {
+                        "heading": {
+                            "level": 2,
+                            "text": "EDUCATION"
+                        },
+                        "elements": [],
+                        "subsections": []
+                    },
+                    {
+                        "heading": {
+                            "level": 2,
+                            "text": "Sri Sivasubramaniya Nadar College of Engineering,B.Tech Information Technology"
+                        },
+                        "elements": [
+                            {
+                                "type": "paragraph",
+                                "text": "CGPA : 8.445"
+                            }
+                        ],
+                        "subsections": []
+                    },
+                    {
+                        "heading": {
+                            "level": 2,
+                            "text": "S.B.O.A School and Junior College04/2023 – 05/2024  | Chennai"
+                        },
+                        "elements": [
+                            {
+                                "type": "paragraph",
+                                "text": "12th : 95.8%"
+                            }
+                        ],
+                        "subsections": []
+                    },
+                    {
+                        "heading": {
+                            "level": 2,
+                            "text": "CERTIFICATES"
+                        },
+                        "elements": [
+                            {
+                                "type": "list",
+                                "items": [
+                                    {
+                                        "text": "AI/ML Internship  (Ailaysa, 2025)",
+                                        "children": []
+                                    },
+                                    {
+                                        "text": "Participation in VISA Hackathon (Shaastra - IIT Madras)",
+                                        "children": []
+                                    },
+                                    {
+                                        "text": "Participation in Zenith Hackathon 4.0, 2025 (SriSivasubramaniya Nadar College of Engineering)",
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ],
+                        "subsections": []
+                    },
+                    {
+                        "heading": {
+                            "level": 2,
+                            "text": "INTERESTS"
+                        },
+                        "elements": [
+                            {
+                                "type": "list",
+                                "items": [
+                                    {
+                                        "text": "Content Creation",
+                                        "children": []
+                                    },
+                                    {
+                                        "text": "Motor Sports (F1)",
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "paragraph",
+                                "text": "| 8754504244"
+                            },
+                            {
+                                "type": "paragraph",
+                                "text": "| Linkedin: Oviya TS"
+                            },
+                            {
+                                "type": "paragraph",
+                                "text": "| Git: oviya-1228"
+                            },
+                            {
+                                "type": "paragraph",
+                                "text": "| Leet: oviya1228"
+                            },
+                            {
+                                "type": "paragraph",
+                                "text": "Web & Full Stack DevelopmentHTML, CSS, Bootstrap, React.js, Node.js, Express.js, Prisma"
+                            },
+                            {
+                                "type": "paragraph",
+                                "text": "AI/MLPython, Machine Learning algorithms, Deep learningfundamentals, NLP basics, RAG concepts, data preprocessing,Model evaluation"
+                            },
+                            {
+                                "type": "paragraph",
+                                "text": "Tools, Platforms & EnvironmentsGit, GitHub, Vercel, Visual Studio Code, Google Colab, Jira"
+                            },
+                            {
+                                "type": "paragraph",
+                                "text": "09/2024 – Present  | Chennai"
+                            },
+                            {
+                                "type": "list",
+                                "items": [
+                                    {
+                                        "text": "Participation in Hackathon - Kyberastara 2025 (Amrita VishwaVidyapeetham)",
+                                        "children": []
+                                    },
+                                    {
+                                        "text": "Participation in Techsprint Hackathon (Sri SivasubramaniyaNadar College of Engineering)",
+                                        "children": []
+                                    },
+                                    {
+                                        "text": "Literature",
+                                        "children": []
+                                    },
+                                    {
+                                        "text": "Poetry",
+                                        "children": []
+                                    },
+                                    {
+                                        "text": "Music",
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ],
+                        "subsections": []
+                    }
+                ]
+            }
+        ]
+    }
+}

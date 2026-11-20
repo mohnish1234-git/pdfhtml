@@ -32,6 +32,7 @@
     <h1>Side-by-Side Comparison: Page {{ page_num }}</h1>
      <div style="text-align: center; margin: 10px;">
         <button onclick="location.href='/edit/{{ job_id }}'">Edit</button>
+        <button onclick="window.open('/semantic/{{ job_id }}', '_blank')">Semantic View</button>
     </div>
     <div class="container">
         <iframe src="{{ pdf_url }}"></iframe>
